@@ -1,0 +1,13 @@
+<b><%= @unique_incoming_phone_numbers_count %></b> people have saved 
+<br><b><%= @total_hold_duration %></b> hours of life with
+<br><b><%= @human_connected_calls.count %></b> successful Connect calls out of
+<br><b><%= @initiated_calls.count %></b> total attempts for an overall
+<br><b><%= @human_connectino_rate %></b> success rate
+
+<br>
+<br>
+<br>
+<br>
+<br>*People = unique incoming phone numbers
+<br>Hours of life = Total hold timel, but including hold time for calls that never successfully connected
+<br>Successfully connected = Someone pressed '1' on the other end and triggered an outbound phone call

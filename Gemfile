@@ -1,5 +1,9 @@
 source 'https://rubygems.org'
 
+gem 'twilio-ruby'
+gem 'protected_attributes'
+gem 'pg'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.4'
 
