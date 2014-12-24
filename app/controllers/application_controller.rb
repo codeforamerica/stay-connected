@@ -2,8 +2,9 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
+  before_filter :generate_metrics
 
-  def index
+  def generate_metrics
     client = Twilio::REST::Client.new(ENV['TWILIO_SID'], ENV['TWILIO_AUTH'])
     numbers = client.account.incoming_phone_numbers.list.map { |n| n.phone_number }
     all_calls = Call.all
@@ -17,7 +18,29 @@ class ApplicationController < ActionController::Base
 
     @unique_incoming_phone_numbers_count = @initiated_calls.map { |c| c.from_number}.uniq.count
 
-    @human_connectino_rate = @human_connected_calls.count / @initiated_calls.count.to_f
+    @human_connection_rate = @human_connected_calls.count / @initiated_calls.count.to_f
+  end
 
+  def index
+  end
+
+  # For ducksboard
+  def people
+    render :json => {'value' => @unique_incoming_phone_numbers_count}
+  end
+
+  # For ducksboard
+  def hours
+    render :json => {'value' => @total_hold_duration}
+  end
+
+  # For ducksboard
+  def successes
+    render :json => {'value' => @human_connected_calls.count}
+  end
+
+  # For ducksboard
+  def rate
+    render :json => {'value' => @human_connection_rate}
   end
 end

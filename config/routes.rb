@@ -5,6 +5,10 @@ StayConnected::Application.routes.draw do
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
   root 'application#index'
+  get 'people' => 'application#people'
+  get 'hours' => 'application#hours'
+  get 'successes' => 'application#successes'
+  get 'rate' => 'application#rate'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
