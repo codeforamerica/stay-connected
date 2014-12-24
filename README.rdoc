@@ -1,28 +1,27 @@
-== README
+# Connect Metrics
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a little app to track metrics for [Connect](https://github.com/codeforamerica/connect). It uses Rails + Postgres and pulls call data from Twilio.
 
-Things you may want to cover:
+It's deployed on heroku: http://stay-connected-metrics.herokuapp.com/people
 
-* Ruby version
+And powers this Ducksboard: https://public.ducksboard.com/NsoSQbe655DQ0DlvQxr6/
 
-* System dependencies
+Check out the [Connect project repo](https://github.com/codeforamerica/connect) for details on the project
 
-* Configuration
+# Local setup
+1) Pull the code
 
-* Database creation
+2) Create .env file with these env vars:
+- TWILIO_SID
+- TWILIO_AUTH
 
-* Database initialization
+3) Setup your Postgres DB
+- `rake db:create`
+- `rake db:migrate`
 
-* How to run the test suite
+4) Load data from Twilio
+- `foreman run import_calls`
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+5) Check it!
+- `foreman run rails s`
+- Open a browser and go to `localhost:3000`
